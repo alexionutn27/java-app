@@ -36,3 +36,4 @@ Aplicația pornește implicit pe `http://localhost:8080`, iar pagina principală
 ## Ce trebuie să faci tu
 
 Repo-ul nu include workflow-urile finale de curs. Le adaugi tu pas cu pas în `.github/workflows`, conform lecțiilor.
+# java-app
