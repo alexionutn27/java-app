@@ -37,3 +37,11 @@ Aplicația pornește implicit pe `http://localhost:8080`, iar pagina principală
 
 Repo-ul nu include workflow-urile finale de curs. Le adaugi tu pas cu pas în `.github/workflows`, conform lecțiilor.
 # java-app
+Folosesc două tipuri de tag-uri:
+
+- sha-<commit> → pentru trasabilitate exactă
+- latest → pentru ultima versiune
+
+Motiv:
+sha = știu exact ce cod rulează
+latest = ușor de folosit în dezvoltare
