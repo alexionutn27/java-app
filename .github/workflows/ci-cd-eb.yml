@@ -36,12 +36,15 @@ jobs:
           name: eb-bundle
           path: bundle.zip
 
-  deploy_staging:
-    needs: build_test_package
-    runs-on: ubuntu-latest
-    steps:
-      - name: Deploy to EB staging
-        run: echo "deploy staging"
+deploy_staging:
+  needs: build_test_package
+  runs-on: ubuntu-latest
+  steps:
+    - name: Deploy to EB staging
+      run: echo "deploy staging"
+
+    - name: Health check staging
+      run: curl -f http://URL-TAU-STAGING
 
   deploy_prod:
     needs: deploy_staging
