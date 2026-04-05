@@ -44,7 +44,7 @@ jobs:
         run: echo "deploy staging"
 
       - name: Health check staging
-        run: curl -f http://URL-GRESIT
+        run: curl -f http://skillbrain-env-staging.eba-rqxvyzam.eu-west-3.elasticbeanstalk.com
 
   deploy_prod:
     needs: deploy_staging
