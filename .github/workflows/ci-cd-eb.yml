@@ -15,33 +15,38 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: '17'
           cache: maven
+
       - name: Build and test
         run: mvn -B -ntp clean verify
+
       - name: Create EB bundle
         run: |
           JAR_FILE=$(ls target/*.jar | head -n1)
           cp "$JAR_FILE" application.jar
           zip -r bundle.zip Procfile application.jar
-- uses: actions/upload-artifact@v4
-  with:
-    name: eb-bundle
-    path: bundle.zip
-deploy_staging:
-  needs: build_test_package
-  runs-on: ubuntu-latest
-  steps:
-    - name: Deploy to EB staging
-      run: echo "deploy staging"
 
-deploy_prod:
-  needs: deploy_staging
-  environment: production
-  runs-on: ubuntu-latest
-  steps:
-    - name: Deploy to EB prod
-      run: echo "deploy prod"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: eb-bundle
+          path: bundle.zip
+
+  deploy_staging:
+    needs: build_test_package
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to EB staging
+        run: echo "deploy staging"
+
+  deploy_prod:
+    needs: deploy_staging
+    environment: production
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to EB prod
+        run: echo "deploy prod"
